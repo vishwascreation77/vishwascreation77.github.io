@@ -1,0 +1,295 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080808">
+<meta name="description" content="Vishwas — Video Editor and Thumbnail Designer. Explore my creative portfolio.">
+<title>VISHWAS | Creative Portfolio</title>
+
+<style>
+:root {
+  --bg:#080808;
+  --card:#111;
+  --white:#fff;
+  --muted:#a0a0a0;
+  --line:#292929;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{background:var(--bg);color:var(--white);font-family:Arial,Helvetica,sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+::selection{background:white;color:black}
+
+nav{
+  position:sticky;top:0;z-index:100;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:20px 7%;background:rgba(8,8,8,.92);
+  backdrop-filter:blur(15px);border-bottom:1px solid #222
+}
+.logo{font-weight:900;letter-spacing:2px;font-size:18px}
+.nav-links{display:flex;gap:25px;font-size:12px;color:#bbb}
+.nav-links a:hover{color:white}
+
+.hero{
+  min-height:88vh;min-height:88svh;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:80px 9%;position:relative;overflow:hidden;
+  background:radial-gradient(ellipse at 80% 35%,#292929 0%,#080808 52%)
+}
+.hero::after{
+  content:"";position:absolute;width:240px;height:240px;
+  right:-120px;bottom:-120px;border:1px solid #444;
+  border-radius:50%;box-shadow:0 0 0 35px #111,0 0 0 70px #0d0d0d;
+  pointer-events:none
+}
+.eyebrow{font-size:11px;letter-spacing:4px;color:#aaa}
+h1{
+  font-size:clamp(65px,14vw,150px);
+  line-height:.88;letter-spacing:-.075em;
+  margin:32px 0;font-weight:900
+}
+.outline{color:transparent;-webkit-text-stroke:1.5px #fff}
+.hero p{color:#aaa;line-height:1.8;max-width:430px;font-size:15px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:14px 20px;border:1px solid #555;font-size:11px;
+  letter-spacing:1px;transition:.25s
+}
+.btn:hover{background:white;color:black;border-color:white;transform:translateY(-3px)}
+.btn.light{background:white;color:black;border-color:white}
+
+section{padding:95px 9%}
+.section-tag{font-size:11px;color:#999;letter-spacing:3px}
+h2{font-size:clamp(34px,6vw,65px);letter-spacing:-.05em;margin:16px 0 30px}
+.intro{color:var(--muted);line-height:1.8;max-width:580px;font-size:14px}
+
+.work-grid{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:18px;margin-top:35px
+}
+.project{min-width:0;background:var(--card);border:1px solid var(--line);overflow:hidden}
+.project-visual{
+  aspect-ratio:16/10;display:flex;align-items:center;
+  justify-content:center;text-align:center;padding:18px;
+  background:linear-gradient(135deg,#292929,#090909);
+  position:relative;overflow:hidden
+}
+.project-visual::before{
+  content:"";position:absolute;width:160px;height:160px;
+  border:1px solid #555;transform:rotate(35deg);transition:.5s
+}
+.project:hover .project-visual::before{transform:rotate(70deg) scale(1.25)}
+.project-visual span{position:relative;font-size:clamp(20px,4vw,36px);font-weight:900;letter-spacing:-1px}
+.project-info{padding:18px}
+.project-info h3{font-size:16px;margin-bottom:8px}
+.project-info p{font-size:12px;line-height:1.7;color:var(--muted)}
+.text-link{display:inline-block;margin-top:15px;font-size:11px;border-bottom:1px solid #888;padding-bottom:4px}
+
+.thumbnails{background:#0d0d0d}
+.thumb-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:35px}
+.thumb{
+  aspect-ratio:16/9;background:linear-gradient(145deg,#333,#090909);
+  border:1px solid #414141;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;text-align:center;padding:10px;transition:.3s
+}
+.thumb:hover{transform:translateY(-5px);background:#222}
+.thumb strong{font-size:clamp(15px,3vw,26px)}
+.thumb small{margin-top:8px;color:#aaa;font-size:9px;letter-spacing:2px}
+.note{color:#777;font-size:11px;margin-top:20px;line-height:1.7}
+
+.services{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:35px}
+.service{padding:25px 20px;border:1px solid var(--line);background:#0c0c0c;transition:.3s}
+.service:hover{border-color:#777;transform:translateY(-4px)}
+.num{font-size:11px;color:#888}
+.service h3{margin:20px 0 10px;font-size:17px}
+.service p{color:#999;font-size:12px;line-height:1.8}
+
+.about{background:#0d0d0d}
+.about-box{border-left:2px solid white;padding:10px 0 10px 25px;max-width:650px}
+.about-box p{color:#bbb;line-height:1.9;font-size:15px}
+
+.contact-card{
+  padding:clamp(24px,5vw,48px);border:1px solid #383838;
+  background:linear-gradient(130deg,#171717,#090909);margin-top:30px
+}
+.contact-card>p{color:#aaa;line-height:1.8;font-size:14px}
+.contact-list{display:grid;margin-top:25px}
+.contact-row{
+  padding:17px 0;border-bottom:1px solid #292929;
+  display:flex;justify-content:space-between;gap:15px;align-items:center
+}
+.contact-row span{color:#888;font-size:10px;letter-spacing:1px}
+.contact-row a{font-size:13px;overflow-wrap:anywhere;text-align:right}
+.contact-row a:hover{text-decoration:underline}
+footer{
+  padding:28px 9%;border-top:1px solid #222;color:#888;font-size:11px;
+  display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap
+}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:650px){
+  nav{padding:17px 5%}
+  .logo{font-size:15px}
+  .nav-links{gap:12px;font-size:10px}
+  .hero{padding:75px 6%;min-height:80svh}
+  h1{font-size:clamp(58px,15vw,95px)}
+  section{padding:70px 6%}
+  .work-grid{grid-template-columns:1fr;gap:15px}
+  .thumb-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .services{grid-template-columns:1fr}
+  .contact-row{align-items:flex-start;flex-direction:column;gap:9px}
+  .contact-row a{text-align:left}
+  footer{padding:25px 6%}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+
+<body>
+<nav>
+  <a class="logo" href="#home">VISHWAS</a>
+  <div class="nav-links">
+    <a href="#work">WORK</a>
+    <a href="#about">ABOUT</a>
+    <a href="#contact">CONTACT</a>
+  </div>
+</nav>
+
+<header class="hero" id="home">
+  <div class="eyebrow">VIDEO EDITOR · THUMBNAIL DESIGNER</div>
+  <h1>I AM<br><span class="outline">VISHWAS</span></h1>
+  <p>I am learning every day — improving my craft, one creative project at a time.</p>
+  <div class="actions">
+    <a class="btn light" href="#work">EXPLORE MY WORK ↘</a>
+    <a class="btn" href="#contact">CONTACT ME ↗</a>
+  </div>
+</header>
+
+<section id="work">
+  <div class="section-tag">01 / SELECTED WORK</div>
+  <h2>My Video Edits.</h2>
+  <p class="intro">Every edit is a chance to learn something new. Here is one of my video samples.</p>
+
+  <div class="work-grid">
+    <article class="project reveal">
+      <a href="https://www.instagram.com/reel/De5-9hVO_J-/?cplk=MTV5cDBsNTd5bjh4OQ==" target="_blank" rel="noopener noreferrer">
+        <div class="project-visual"><span>VIDEO<br>EDITING ↗</span></div>
+      </a>
+      <div class="project-info">
+        <h3>Instagram Reel</h3>
+        <p>Video editing sample from my Instagram.</p>
+        <a class="text-link" href="https://www.instagram.com/reel/De5-9hVO_J-/?cplk=MTV5cDBsNTd5bjh4OQ==" target="_blank" rel="noopener noreferrer">WATCH VIDEO ↗</a>
+      </div>
+    </article>
+
+    <article class="project reveal">
+      <div class="project-visual"><span>MORE<br>COMING SOON</span></div>
+      <div class="project-info">
+        <h3>More creative work</h3>
+        <p>New video projects will be added here.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="thumbnails" id="thumbnails">
+  <div class="section-tag">02 / DESIGN GALLERY</div>
+  <h2>Thumbnail Designs.</h2>
+  <p class="intro">Creative thumbnail design is part of my journey.</p>
+  <div class="thumb-grid">
+    <div class="thumb reveal"><strong>YOUR<br>STORY</strong><small>DESIGN 01</small></div>
+    <div class="thumb reveal"><strong>LEVEL<br>UP</strong><small>DESIGN 02</small></div>
+    <div class="thumb reveal"><strong>THE<br>MOMENT</strong><small>DESIGN 03</small></div>
+  </div>
+  <p class="note">These are placeholders, not actual client work. Your real thumbnail images can replace them later.</p>
+</section>
+
+<section id="services">
+  <div class="section-tag">03 / WHAT I DO</div>
+  <h2>My Creative Skills.</h2>
+  <div class="services">
+    <article class="service reveal">
+      <div class="num">01 / VIDEO</div>
+      <h3>Video Editing</h3>
+      <p>Creative edits, transitions and storytelling for digital content.</p>
+    </article>
+    <article class="service reveal">
+      <div class="num">02 / SHORT FORM</div>
+      <h3>Reels & Shorts</h3>
+      <p>Short videos with creative pacing and smooth transitions.</p>
+    </article>
+    <article class="service reveal">
+      <div class="num">03 / DESIGN</div>
+      <h3>Thumbnails</h3>
+      <p>Clear, bold thumbnail concepts for YouTube creators.</p>
+    </article>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="section-tag">04 / ABOUT ME</div>
+  <h2>Always Learning.</h2>
+  <div class="about-box reveal">
+    <p>Hi, I'm Vishwas. I'm a video editor and thumbnail designer who believes creativity improves with practice. I am learning every day, exploring new ideas, and working to make every project better than the last.</p>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-tag">05 / GET IN TOUCH</div>
+  <h2>Let's Create<br>Something Great.</h2>
+  <div class="contact-card reveal">
+    <p>Have a video or thumbnail project in mind? Let's talk about your idea.</p>
+    <div class="contact-list">
+      <div class="contact-row">
+        <span>EMAIL</span>
+        <a href="mailto:vishwasvs675@gmail.com">vishwasvs675@gmail.com</a>
+      </div>
+      <div class="contact-row">
+        <span>INSTAGRAM</span>
+        <a href="https://www.instagram.com/hey.vishwascreation/" target="_blank" rel="noopener noreferrer">@hey.vishwascreation ↗</a>
+      </div>
+      <div class="contact-row">
+        <span>WHATSAPP</span>
+        <a href="https://wa.me/917309251089" target="_blank" rel="noopener noreferrer">Message me on WhatsApp ↗</a>
+      </div>
+    </div>
+    <div class="actions">
+      <a class="btn light" href="https://wa.me/917309251089" target="_blank" rel="noopener noreferrer">LET'S TALK ON WHATSAPP ↗</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 VISHWAS</span>
+  <span>LEARN. CREATE. IMPROVE.</span>
+</footer>
+
+<script>
+const items = document.querySelectorAll('.reveal');
+
+if ('IntersectionObserver' in window) {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  items.forEach(item => observer.observe(item));
+} else {
+  items.forEach(item => item.classList.add('visible'));
+}
+</script>
+</body>
+</html>
